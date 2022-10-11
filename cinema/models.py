@@ -30,6 +30,9 @@ class Actor(models.Model):
         verbose_name = 'Актер и режессеры'
         verbose_name_plural = 'Актеры и режессеры'
 
+    def get_absolute_url(self):
+        return reverse('cinema_detail', kwargs={'slug': self.name})
+
 
 class Genre(models.Model):
     name = models.CharField('Жанр', max_length=150)
@@ -55,7 +58,7 @@ class Cinema(models.Model):
     budget = models.PositiveSmallIntegerField('Бюджет', default=0, help_text="Указывать в $")
     fees_in_usa = models.PositiveSmallIntegerField('Сборы в США', default=0, help_text="Указывать в $")
     fees_in_world = models.PositiveSmallIntegerField('Сборы в мире', default=0, help_text="Указывать в $")
-    producer = models.ManyToManyField(
+    producers = models.ManyToManyField(
         Actor,
         verbose_name='Режиссер',
         related_name='film_producer'

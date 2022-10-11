@@ -31,14 +31,18 @@
                     </li>
                     <li style="list-style: none">
                                     <span><b>Режиссер:</b>
-                                        {% for producer in cinema.producer.all %}
+
+                                        {% for producer in cinema.producers.all %}
+                                        <a href = '{% url "actor_detail" producer.name %}'>
                                             {{ producer.name }}
+                                        </a>
                                         {% endfor %}
                                     </span>
                     </li>
                     <li style="list-style: none"><span><b>Актеры:</b>
                         {% for actor in cinema.actors.all %}
-                            {{ actor.name }}
+                            <a href = '{% url "actor_detail" actor.name %}'>
+                                {{ actor.name }} </a>
                         {% endfor %}
                                 </span>
                     </li>
